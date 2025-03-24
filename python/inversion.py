@@ -1,5 +1,6 @@
 import random
 
+
 def inverse(genes):
     point1 = random.randint(0, len(genes) - 2)
     point2 = random.randint(point1 + 1, len(genes) - 1)

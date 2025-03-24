@@ -1,23 +1,23 @@
 from population import Population
-from config import EPOCHS
-import time
+from config import Config
+
+from rich.logging import RichHandler
+import logging
+
+# Configure pretty logging
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s",
+                    handlers=[RichHandler(rich_tracebacks=True)])
+logger = logging.getLogger("genetic-algorithm")
 
 if __name__ == "__main__":
-    pop = Population()
+    config = Config()
+    pop = Population(config)
     print("Start populacji:")
     print(pop)
 
-    start_time = time.time()
-    for epoch in range(EPOCHS):
-        pop.evolve()
-        best = pop.best()
-        print(f"Epoka {epoch+1}: Najlepszy -> {best}")
-        if round(best.fitness, 4) == 0.0000:
-            print("Znaleziono optymalne rozwiazanie")
-            break
-    
-    end_time = time.time()
-    ellapsed_time = round(end_time - start_time, 2)
+    t, b = pop.try_solve()
+
     print("\nFinalny wynik:")
-    print(pop.best())
-    print(f"Czas wykonania: {ellapsed_time}s")
+    print(b)
+    print(f"Czas wykonania: {t}s")

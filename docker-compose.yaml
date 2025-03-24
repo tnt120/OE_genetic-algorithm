@@ -1,0 +1,7 @@
+services:
+  initializer:
+    container_name: api-server
+    build:
+      context: ./python/
+    ports:
+      - ""
