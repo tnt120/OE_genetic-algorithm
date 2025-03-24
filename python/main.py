@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print("Start populacji:")
     print(pop)
 
-    t, b = pop.try_solve()
+    t, b, _ = pop.try_solve()
 
     print("\nFinalny wynik:")
     print(b)

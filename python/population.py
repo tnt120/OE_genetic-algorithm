@@ -101,7 +101,9 @@ class Population:
             self.evolve()
             best_in_epoch = self.best()
             logging.info(f"Epoka {epoch+1} Najlepszy -> {best_in_epoch}")
-            history.append(best_in_epoch.to_dict())
+            h = best_in_epoch.to_dict()
+            h['epoch_number'] = epoch + 1
+            history.append(h)
 
             if round(best_in_epoch.fitness, 4) == 0.0000:
                 logging.info("Znalezione optymalne rozwiązanie")

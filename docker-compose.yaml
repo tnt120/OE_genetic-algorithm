@@ -1,7 +1,30 @@
 services:
-  initializer:
+  api-server:
     container_name: api-server
     build:
       context: ./python/
     ports:
-      - ""
+      - "2137:2137"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    container_name: data-store
+    image: postgres:17.4
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: some_passwd
+    volumes:
+      - ./postgres/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5678:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      retries: 5
+
+volumes:
+  postgres-data:
+  

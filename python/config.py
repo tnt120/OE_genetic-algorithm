@@ -20,9 +20,15 @@ class Config:
     elitism: bool = True
     inversion: bool = True
 
-    @classmethod
-    def from_request(cls, request) -> "Config":
-        return Config()
+    @staticmethod
+    def from_request(request) -> "Config":
+        if request is None:
+            return Config()
+        config = Config(**{
+            k: v
+            for k, v in request.items() if k in Config.__annotations__
+        })
+        return config
 
 
 GENES = [
