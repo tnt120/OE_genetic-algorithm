@@ -3,7 +3,7 @@ VARIABLE_RANGE = (-5.0, 5.0)
 DIMENSIONS = 2
 
 POPULATION_SIZE = 16
-EPOCHS = 100
+EPOCHS = 10000
 
 PROBABILITY_UNIFORM_CROSSOVER = 0.5
 PROBABILITY_MUTATION = 0.1
@@ -12,7 +12,7 @@ PROBABILITY_CROSSOVER = 0.9
 SELECTION_TYPE = "roulette"  # "best", "roulette", "tournament"
 CROSSOVER_TYPE = "uniform"  # "single_point", "two_point", "uniform", "grain"
 MUTATION_TYPE = "two_point"  # "edge", "one_point", "two_point"
-ELITISM = False
+ELITISM = True
 INVERSION = True
 
 GENES = [
