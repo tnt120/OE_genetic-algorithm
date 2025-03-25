@@ -48,8 +48,9 @@ class Population:
                 child1_genes = self.mutate(child1_genes)
                 child2_genes = self.mutate(child2_genes)
 
-            if self.config.inversion:
+            if random() <= self.config.inversion_proba:
                 child1_genes = inverse(child1_genes)
+            if random() <= self.config.inversion_proba:
                 child2_genes = inverse(child2_genes)
 
             new_population.append(

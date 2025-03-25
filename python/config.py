@@ -18,7 +18,7 @@ class Config:
     crossover_type: str = "uniform"  # "single_point", "two_point", "uniform", "grain"
     mutation_type: str = "two_point"  # "edge", "one_point", "two_point"
     elitism: bool = True
-    inversion: bool = True
+    inversion_proba: float = 0.5
 
     @staticmethod
     def from_request(request) -> "Config":

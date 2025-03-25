@@ -2,18 +2,10 @@ import random
 import numpy as np
 
 
-def tournament_selection(population, tournament_size=4, num_tournaments=4):
-    shuffled = random.sample(population, len(population))
-    tournament_winners = []
-
-    for i in range(num_tournaments):
-        group = shuffled[i * tournament_size:(i + 1) * tournament_size]
-        winner = max(group, key=lambda x: x.fitness)
-        tournament_winners.append(winner)
-
-    top_two = sorted(tournament_winners, key=lambda x: x.fitness,
-                     reverse=True)[:2]
-    return top_two
+def tournament_selection(population, tournament_group_size=4):
+    parents = random.choices(population, k=tournament_group_size)
+    parents = sorted(parents, key=lambda agent: agent.fitness, reverse=True)
+    return parents[0], parents[1]
 
 
 def roulette_selection(population):
