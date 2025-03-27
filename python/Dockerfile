@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-ENTRYPOINT [ "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "2137", "--workers", "4" ]
+ENTRYPOINT [ "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "2137" ]

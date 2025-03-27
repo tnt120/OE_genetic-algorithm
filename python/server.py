@@ -1,5 +1,6 @@
 from typing import Optional
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from rich.logging import RichHandler
 from config import Config
 from db import PostgresConnector
@@ -20,6 +21,13 @@ db = PostgresConnector(dbname='postgres',
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/genetic/submit")
 def genetic_submit(data: Optional[dict] = None):
