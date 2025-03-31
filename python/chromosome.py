@@ -31,10 +31,9 @@ class Chromosome:
         return f"{self.genes} -> {self.decode()} | fitness: {self.fitness:.4f}"
 
     def to_dict(self) -> dict:
-        x1, x2 = self.decode()
+        nums = self.decode()
         return {
             "genes": self.genes,
-            "x1": x1,
-            "x2": x2,
-            "fitness": self.fitness
+            "fitness": self.fitness,
+            "points": nums,
         }

@@ -41,11 +41,11 @@ class PostgresConnector:
         try:
             self.cursor.execute(
                 """
-                INSERT INTO jobs (job_id, genes, x1, x2, elapsed_time, fitness)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                INSERT INTO jobs (job_id, genes, points, elapsed_time, fitness)
+                VALUES (%s, %s, %s, %s, %s)
                 RETURNING job_id;
                 """,
-                (job_id, data['genes'], data['x1'], data['x2'],
+                (job_id, data['genes'], data['points'],
                  data['elapsed_time'], data['fitness']),
             )
             self.conn.commit()
@@ -64,15 +64,14 @@ class PostgresConnector:
             for epoch_data in epoch_data_list:
                 self.cursor.execute(
                     """
-                    INSERT INTO epochs (job_id, epoch_number, genes, x1, x2, fitness)
-                    VALUES (%s, %s, %s, %s, %s, %s);
+                    INSERT INTO epochs (job_id, epoch_number, genes, points, fitness)
+                    VALUES (%s, %s, %s, %s, %s);
                     """,
                     (
                         job_id,
                         epoch_data["epoch_number"],
                         epoch_data["genes"],
-                        epoch_data["x1"],
-                        epoch_data["x2"],
+                        epoch_data['points'],
                         epoch_data["fitness"],
                     ),
                 )

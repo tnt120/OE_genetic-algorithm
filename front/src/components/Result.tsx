@@ -17,7 +17,7 @@ const Result = ({ result, onReset }: ResultProps) => {
                     <b>Najlepszy gen końcowy:</b> {result.genes}
                 </Typography>
                 <Typography variant="body1">
-                    <b>Współrzędne punktu minimum:</b> ({roundNumber(result.x1, 4)}, {roundNumber(result.x2, 4)})
+                    <b>Współrzędne punktu minimum:</b> ({result.points.map(item => roundNumber(item, 4)).join(', ')})
                 </Typography>
                 <Typography variant="body1">
                     <b>Znalezione minimum globalne:</b> {roundNumber(+result.fitness, 4)}

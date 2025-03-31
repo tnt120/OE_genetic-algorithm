@@ -13,7 +13,7 @@ from inversion import inverse
 
 class Population:
 
-    def __init__(self, config: Config, use_default: bool = True):
+    def __init__(self, config: Config, use_default: bool = False):
         self.config = config
         if use_default:
             self.individuals = [
