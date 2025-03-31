@@ -1,4 +1,13 @@
 services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./front/
+    ports:
+      - "5173:5173"
+    depends_on:
+      api-server:
+        condition: service_started
   api-server:
     container_name: api-server
     build:
@@ -10,7 +19,7 @@ services:
         condition: service_healthy
   postgres:
     container_name: data-store
-    image: postgres:17.4
+    image: postgres:14.1-alpine
     restart: always
     environment:
       POSTGRES_USER: postgres
