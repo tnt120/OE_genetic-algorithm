@@ -42,6 +42,7 @@ def genetic_submit(data: Optional[dict] = None):
     response = best_individual.to_dict()
     response['elapsed_time'] = time
     response['job_id'] = job_id
+    response['history'] = [item["fitness"] for item in history]
     db.insert_job(job_id, response)
 
     db.insert_epochs(job_id, history)

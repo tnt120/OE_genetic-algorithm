@@ -4,4 +4,5 @@ export interface GenericAlgorithmResponse {
     elapsed_time: number;
     job_id: string;
     points: number[];
+    history: number[];
 }

@@ -28,8 +28,12 @@ export default function App() {
     };
 
     return (
-        <Box maxWidth={600} mx="auto" mt={4}>
-            {!loading && !result && <Form onSubmit={handleSubmit} />}
+        <Box mx="auto" mt={4}>
+            {!loading && !result && (
+                <Box maxWidth="600px" mx="auto">
+                    <Form onSubmit={handleSubmit} />
+                </Box>
+            )}
 
             {loading && (
                 <Box textAlign="center" mt={4}>
