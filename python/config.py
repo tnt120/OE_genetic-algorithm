@@ -15,10 +15,12 @@ class Config:
     probability_crossover: float = 0.9
 
     selection_type: str = "roulette"  # "best", "roulette", "tournament"
-    crossover_type: str = "uniform"  # "single_point", "two_point", "uniform", "grain"
-    mutation_type: str = "two_point"  # "edge", "one_point", "two_point"
+    crossover_type: str = "arithmetic"  # "single_point", "two_point", "uniform", "grain", "arithmetic", "linear", "alpha_blend", "alpha_beta_blend", "average"
+    mutation_type: str = "uniform"  # "edge", "one_point", "two_point", "uniform", "gaussian"
     elitism: bool = True
     inversion_proba: float = 0.5
+
+    chromosome_type: str = "real"  # or "real"
 
     @staticmethod
     def from_request(request) -> "Config":

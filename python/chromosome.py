@@ -6,6 +6,7 @@ import random
 class Chromosome:
 
     def __init__(self, config: Config, genes=None):
+        self.config = config 
         self.bit_length = config.chromosome_length
         self.dim = config.dimensions
         self.variable_range = config.variable_range

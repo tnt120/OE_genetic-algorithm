@@ -1,8 +1,9 @@
-from population import Population
+import logging
 from config import Config
+from population import Population
+from real_population import RealPopulation
 
 from rich.logging import RichHandler
-import logging
 
 # Configure pretty logging
 logging.basicConfig(level=logging.INFO,
@@ -10,14 +11,29 @@ logging.basicConfig(level=logging.INFO,
                     handlers=[RichHandler(rich_tracebacks=True)])
 logger = logging.getLogger("genetic-algorithm")
 
-if __name__ == "__main__":
+def main():
     config = Config()
-    pop = Population(config)
-    print("Start populacji:")
-    print(pop)
+    
+    # Choose population type based on configuration
+    if config.chromosome_type == "real":
+        logging.info("Using real-valued chromosome representation")
+        pop = RealPopulation(config)
+    else:
+        logging.info("Using binary chromosome representation")
+        pop = Population(config)
 
-    t, b, _ = pop.try_solve()
+    try:
+        time, best, history = pop.try_solve()
+        logging.info(f"Time: {time}s")
+        logging.info(f"Best solution: {best}")
+        print(f"Finalny wynik:")
+        print(best)
+        print(f"Czas wykonania: {time}s")
+        
+    except Exception as e:
+        logging.error(f"An error occurred: {str(e)}")
+        raise e
 
-    print("\nFinalny wynik:")
-    print(b)
-    print(f"Czas wykonania: {t}s")
+
+if __name__ == "__main__":
+    main()
