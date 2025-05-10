@@ -9,4 +9,5 @@ export const BinaryChromosomeOptionExclusions: Array<keyof ConfigRequest> = [
 export const RealChromosomeOptionExclusions: Array<keyof ConfigRequest> = [
   "chromosome_type",
   "inversion_proba",
+  "chromosome_length",
 ] as const;

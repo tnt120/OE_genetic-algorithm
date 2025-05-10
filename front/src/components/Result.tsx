@@ -28,6 +28,9 @@ const Result = ({ result, onReset }: ResultProps) => {
                         <Typography variant="body1">
                             <b>Czas trwania:</b> {result.elapsed_time} s
                         </Typography>
+                        <Typography variant="body1">
+                            <b>Ilość epok:</b> {result.history.length}
+                        </Typography>
                         <Button variant="outlined" onClick={onReset} style={{ marginTop: '1rem' }}>
                             Wykonaj ponownie
                         </Button>

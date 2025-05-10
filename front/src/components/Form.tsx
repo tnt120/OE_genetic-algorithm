@@ -38,8 +38,10 @@ type FormProps = {
 };
 
 const Form = ({ onSubmit }: FormProps) => {
-  const [chromosomeType, setChromosomeType] =
-    useState<ChromosomeType>("binary");
+  const [chromosomeType, setChromosomeType] = useState<ChromosomeType>(() => {
+    const savedConfig = localStorage.getItem("config-form");
+    return savedConfig ? JSON.parse(savedConfig).chromosome_type : "binary";
+  });
 
   const [form, setForm] = useState<ConfigRequest>(() => {
     const savedConfig = localStorage.getItem("config-form");
@@ -188,7 +190,7 @@ const Form = ({ onSubmit }: FormProps) => {
                 />
               );
             } else if (typeof value === "string") {
-              let options: string[] =
+              const options: string[] =
                 optionsDict[key as keyof ConfigRequest] || [];
 
               return (
