@@ -1,3 +1,7 @@
 .idea/
 .DS_store
 __pycache__
+wykresy-binarne/
+wykresy-rzeczywiste/
+wykresy-porownawcze-statystyk/
+wykresy-porownawcze-wartosci/
