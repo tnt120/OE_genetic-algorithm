@@ -5,6 +5,7 @@ from rich.logging import RichHandler
 from config import Config
 from db import PostgresConnector
 from population import Population
+from real_population import RealPopulation
 import logging
 import uuid
 
@@ -36,7 +37,11 @@ def genetic_submit(data: Optional[dict] = None):
     logging.info(f"Starting job {job_id}")
 
     config = Config.from_request(data)
-    population = Population(config)
+    if config.chromosome_type == "real":
+        logging.info("Using real-valued chromosome representation")
+        population = RealPopulation(config)
+    else:
+        population = Population(config)
     time, best_individual, history = population.try_solve()
 
     response = best_individual.to_dict()

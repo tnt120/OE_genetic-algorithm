@@ -6,8 +6,8 @@ from numpy.random import random
 from config import Config, GENES
 from chromosome import Chromosome
 from selection import tournament_selection, roulette_selection, best_selection
-from crossover import single_point_crossover, two_point_crossover, uniform_crossover, grainy_crossover, arithmetic_crossover, linear_crossover, alpha_blend_crossover, alpha_beta_blend_crossover, average_crossover
-from mutation import edge_mutation, one_point_mutation, two_point_mutation, uniform_mutation, gaussian_mutation
+from crossover import single_point_crossover, two_point_crossover, uniform_crossover, grainy_crossover
+from mutation import edge_mutation, one_point_mutation, two_point_mutation
 from inversion import inverse
 
 
@@ -76,16 +76,6 @@ class Population:
             return two_point_crossover(p1, p2)
         elif self.config.crossover_type == "uniform":
             return uniform_crossover(p1, p2, self.config.probability_uniform_crossover)
-        elif self.config.crossover_type == "arithmetic":
-            return arithmetic_crossover(p1, p2)
-        elif self.config.crossover_type == "linear":
-            return linear_crossover(p1, p2)
-        elif self.config.crossover_type == "alpha_blend":
-            return alpha_blend_crossover(p1, p2)
-        elif self.config.crossover_type == "alpha_beta_blend":
-            return alpha_beta_blend_crossover(p1, p2)
-        elif self.config.crossover_type == "average":
-            return average_crossover(p1, p2)
         else:
             return grainy_crossover(p1, p2)
 
@@ -96,10 +86,6 @@ class Population:
             return one_point_mutation(genes)
         elif self.config.mutation_type == "two_point":
             return two_point_mutation(genes)
-        elif self.config.mutation_type == "uniform":
-            return uniform_mutation(Chromosome(self.config, genes=genes))
-        elif self.config.mutation_type == "gaussian":
-            return gaussian_mutation(Chromosome(self.config, genes=genes))
         else:
             return two_point_mutation(genes)
 

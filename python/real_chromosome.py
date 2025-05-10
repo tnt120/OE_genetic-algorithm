@@ -7,13 +7,13 @@ class RealChromosome:
     def __init__(self, config: Config, genes=None):
         self.dim = config.dimensions
         self.variable_range = config.variable_range
+        self.config = config
         
         if genes is not None:
             if len(genes) != self.dim:
                 raise ValueError(f"Expected {self.dim} genes, got {len(genes)}")
             self.genes = genes
         else:
-            # Initialize with random values within the variable range
             self.genes = [
                 random.uniform(self.variable_range[0], self.variable_range[1])
                 for _ in range(self.dim)

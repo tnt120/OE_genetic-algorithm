@@ -26,9 +26,12 @@ def main():
         time, best, history = pop.try_solve()
         logging.info(f"Time: {time}s")
         logging.info(f"Best solution: {best}")
+        print(f"Typ: {config.chromosome_type}")
+        print(f"Crossover: {config.crossover_type}")
+        print(f"Mutation: {config.mutation_type}")
         print(f"Finalny wynik:")
         print(best)
-        print(f"Czas wykonania: {time}s")
+        print(f"Czas wykonania: {time}s, {len(history)} epok")
         
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}")
