@@ -3,6 +3,7 @@
 import pygad
 import matplotlib.pyplot as plt
 import benchmark_functions as bf
+import time
 from utils import get_logger, decode_binary_solution, plot_custom_fitness, plot_compare_fitness
 from stats_collector import GenerationStatsCollector
 
@@ -31,7 +32,8 @@ def real_gad(config, func, logger, collector, selection, crossover, mutation):
             random_mutation_min_val=-32.768,
             logger=logger,
             on_generation=collector.on_generation,
-            parallel_processing=['thread', 4])
+            parallel_processing=['thread', 4],
+            random_seed=config.random_seed)
 
 def binary_gad(config, func, logger, collector, selection, crossover, mutation):
     num_genes_binary = config.num_genes * config.num_bits_per_gene
@@ -56,7 +58,8 @@ def binary_gad(config, func, logger, collector, selection, crossover, mutation):
         K_tournament=3,
         logger=logger,
         on_generation=collector.on_generation,
-        parallel_processing=['thread', 4])
+        parallel_processing=['thread', 4],
+        random_seed=config.random_seed)
 
 def real_chromosome(config, func, logger):
     
@@ -66,8 +69,9 @@ def real_chromosome(config, func, logger):
                 collector = GenerationStatsCollector()
                 
                 ga_instance = real_gad(config, func, logger, collector, selection, crossover, mutation)
-
+               
                 ga_instance.run()
+
 
                 filename = f"wykresy-rzeczywiste/{selection}_{crossover}_{mutation}"
 
@@ -117,13 +121,20 @@ def run_all_combinations(config, func, logger):
             for mutation in config.mutations:
                 real_collector = GenerationStatsCollector()
                 ga_real = real_gad(config, func, logger, real_collector, selection, crossover, mutation)
+
+                start = time.time()
                 ga_real.run()
+                real_time = time.time() - start
+
 
                 real_fitness = [1. / x for x in ga_real.best_solutions_fitness]
 
                 binary_collector = GenerationStatsCollector()
                 ga_binary = binary_gad(config, func, logger, binary_collector, selection, crossover, mutation)
+
+                start = time.time()
                 ga_binary.run()
+                binary_time = time.time() - start
 
                 binary_fitness = [1. / x for x in ga_binary.best_solutions_fitness]
 
@@ -139,10 +150,10 @@ def run_all_combinations(config, func, logger):
                 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6), sharey=True)
 
                 real_collector.plot_diagram_on_ax(ax1, selection, crossover, mutation)
-                ax1.set_title("Real")
+                ax1.set_title(f"Real - czas wykonania {real_time:.4f}s")
 
                 binary_collector.plot_diagram_on_ax(ax2, selection, crossover, mutation)
-                ax2.set_title("Binary")
+                ax2.set_title(f"Binary - czas wykonania {binary_time:.4f}s")
 
                 fig.suptitle(f"Fitness per Generation\n{selection}, {crossover}, {mutation}", fontsize=14)
                 plt.tight_layout(rect=[0, 0.03, 1, 0.95])

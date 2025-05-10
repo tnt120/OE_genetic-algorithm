@@ -1,5 +1,0 @@
-numpy
-fastapi
-uvicorn
-rich
-psycopg2-binary
