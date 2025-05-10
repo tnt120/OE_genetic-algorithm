@@ -22,6 +22,9 @@ class Config:
 
     chromosome_type: str = "real"  # or "real"
 
+    alpha: float = 0.3
+    beta: float = 0.5
+
     @staticmethod
     def from_request(request) -> "Config":
         if request is None:

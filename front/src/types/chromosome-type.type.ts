@@ -4,6 +4,8 @@ export type ChromosomeType = "binary" | "real";
 
 export const BinaryChromosomeOptionExclusions: Array<keyof ConfigRequest> = [
   "chromosome_type",
+  "alpha",
+  "beta"
 ] as const;
 
 export const RealChromosomeOptionExclusions: Array<keyof ConfigRequest> = [

@@ -16,6 +16,8 @@ export interface ConfigRequest {
   mutation_type: MutationType;
   elitism: boolean;
   inversion_proba: number;
+  alpha: number;
+  beta: number;
 }
 
 export const defaultConfigValues: ConfigRequest = {
@@ -32,4 +34,6 @@ export const defaultConfigValues: ConfigRequest = {
   mutation_type: "two_point",
   elitism: true,
   inversion_proba: 1,
+  alpha: 0.3,
+  beta: 0.5
 };

@@ -50,14 +50,15 @@ class RealPopulation:
         return real_tournament_selection(self.individuals)
     
     def crossover(self, p1, p2):
+        alpha, beta = self.config.alpha, self.config.beta
         if self.config.crossover_type == "arithmetic":
             return real_arithmetic_crossover(p1, p2)
         elif self.config.crossover_type == "linear":
             return real_linear_crossover(p1, p2)
         elif self.config.crossover_type == "alpha_blend":
-            return real_blend_alpha_crossover(p1, p2)
+            return real_blend_alpha_crossover(p1, p2, alpha)
         elif self.config.crossover_type == "alpha_beta_blend":
-            return real_blend_alpha_beta_crossover(p1, p2)
+            return real_blend_alpha_beta_crossover(p1, p2, alpha, beta)
         else:
             return real_average_crossover(p1, p2)
 

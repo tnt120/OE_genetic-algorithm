@@ -13,4 +13,7 @@ export const configLabels: Record<keyof ConfigRequest, string> = {
     mutation_type: 'Typ mutacji',
     elitism: 'Elityzm',
     inversion_proba: 'Prawdopodobieństwo inwersji',
+    chromosome_type: 'Typ chromosomu',
+    alpha: 'Współczynnik α',
+    beta: 'Współczynnik β',
 };

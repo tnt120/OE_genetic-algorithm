@@ -172,7 +172,7 @@ const Form = ({ onSubmit }: FormProps) => {
               );
             } else if (typeof value === "number") {
               const isProbability =
-                key.includes("probability") || key.includes("proba");
+                key.includes("probability") || key.includes("proba") || key.includes("alpha") || key.includes("beta");
               return (
                 <TextField
                   key={key}
