@@ -10,4 +10,5 @@ export const RealChromosomeOptionExclusions: Array<keyof ConfigRequest> = [
   "chromosome_type",
   "inversion_proba",
   "chromosome_length",
+  "probability_uniform_crossover"
 ] as const;
